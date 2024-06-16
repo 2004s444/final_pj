@@ -142,7 +142,7 @@ img {
   padding-right: 90px;
   padding-left: 90px;
 
-  .list__img {
+  &__img {
     width: 100%;
     max-width: 1000px;
     height: auto;
@@ -150,21 +150,21 @@ img {
   }
 
   @media (width <= 700px) {
-    .list__img {
+    &__img {
       max-width: 400px;
       padding-top: 200px;
       padding-bottom: 0;
     }
   }
 
-  .list__video {
+  &__video {
     width: 100%;
     max-width: 1000px;
     height: auto;
     padding-block: 200px;
   }
   @media (width <= 700px) {
-    .list__video {
+    &__video {
       max-width: 400px;
     }
   }
