@@ -1,0 +1,176 @@
+@use 'sass:list';
+
+$bgcolors: #7b88ff, #000, #84a4c3, #a1da89, #bb91ff, #ff6db3, #ff927b;
+
+:root {
+  --fixed-m-x: 1.25rem;
+  --fixed-m-y: 1.25rem;
+  --logo-h: 1.875rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  margin: 0;
+  font-family: Pretendard, sans-serif;
+  color: #fff;
+  background-color: list.nth($bgcolors, 7);
+  animation-name: bg-change;
+  animation-timeline: scroll();
+}
+
+@keyframes bg-change {
+  @for $i from 0 through 5 {
+    #{100 / 6 * $i}#{'%'},
+    #{100 / 6 * $i + 100 / 12}#{'%'} {
+      background-color: list.nth($bgcolors, $i - 7);
+    }
+  }
+
+  100% {
+    background-color: list.nth($bgcolors, 7);
+  }
+}
+
+img {
+  display: block;
+}
+
+.fixed {
+  position: fixed;
+
+  @at-root a#{&},
+    & a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &--pos {
+    &-tl {
+      top: var(--fixed-m-y);
+      left: var(--fixed-m-x);
+    }
+
+    &-tr {
+      top: var(--fixed-m-y);
+      right: var(--fixed-m-x);
+      text-align: right;
+    }
+
+    &-br {
+      right: var(--fixed-m-x);
+      bottom: var(--fixed-m-y);
+    }
+  }
+
+  &--role {
+    &-logo {
+      font-family: Pretendard, sans-serif;
+      font-size: 96px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    @media screen and (width <= 920px) {
+      &-logo {
+        font-size: 42px;
+      }
+    }
+
+    &-list {
+      padding-left: 0;
+      margin-block: 0;
+      margin-top: 10px;
+      font-family: Pretendard, sans-serif;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-align: right;
+      list-style: none;
+
+      > li {
+        > a {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    @media screen and (width <= 920px) {
+      &-list {
+        padding-top: 7px;
+        font-size: 16px;
+      }
+    }
+
+    &-contact {
+      font-family: Pretendard, sans-serif;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// #list {
+//   @for $i from 1 through 7 {
+//     &-#{$i} {
+//       background-color: list.nth($bgcolors, $i);
+//     }
+//   }
+// }
+
+.list {
+  scroll-snap-align: center;
+  min-height: 100svh;
+  max-height: 1000px;
+  padding-right: 90px;
+  padding-left: 90px;
+
+  .list__img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    padding-block: 200px;
+  }
+
+  @media (width <= 700px) {
+    .list__img {
+      max-width: 400px;
+      padding-top: 200px;
+      padding-bottom: 0;
+    }
+  }
+
+  .list__video {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    padding-block: 200px;
+  }
+  @media (width <= 700px) {
+    .list__video {
+      max-width: 400px;
+    }
+  }
+}
+@media (width <= 700px) {
+  .list {
+    padding-left: 50px;
+  }
+}
